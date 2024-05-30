@@ -3,6 +3,7 @@ package com.bookstore.vehicleWeb.controllers;
 import com.bookstore.vehicleWeb.data.Vehicle;
 import com.bookstore.vehicleWeb.exceptions.VehicleExceptions;
 import com.bookstore.vehicleWeb.services.VehicleService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,8 @@ public class VehicleController {
         try {
             List<Vehicle> vehicles = vehicleService.findAll();
             return ResponseEntity.ok(vehicles);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).build();
+        } catch (VehicleExceptions e ){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 

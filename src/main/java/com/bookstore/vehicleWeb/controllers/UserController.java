@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> save(@RequestBody User user) {
+    public ResponseEntity<User> save  (@RequestBody User user) {
         try {
             Optional<User> savedUser = userService.save(user);
             return savedUser.map(ResponseEntity::ok)

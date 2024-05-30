@@ -1,10 +1,12 @@
-﻿package com.bookstore.vehicleWeb.data;
+package com.bookstore.vehicleWeb.data;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "usuarios ")
 public class User {
     @Id
     @GeneratedValue
@@ -14,6 +16,9 @@ public class User {
     private String email;
     private String address;
     private String phone;
+
+    public User() {
+    }
 
     public User(String name, String email, String address, String phone) {
         this.name = name;

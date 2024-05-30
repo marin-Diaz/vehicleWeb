@@ -1,14 +1,12 @@
 package com.bookstore.vehicleWeb.services.impl;
 
-import com.bookstore.vehicleWeb.data.Vehicle;
-import com.bookstore.vehicleWeb.exceptions.Exceptions;
 import com.bookstore.vehicleWeb.exceptions.VehicleExceptions;
+import com.bookstore.vehicleWeb.data.Vehicle;
 import com.bookstore.vehicleWeb.repository.VehicleRepository;
 import com.bookstore.vehicleWeb.services.VehicleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VehicleServiceImpl  implements VehicleService {
@@ -21,11 +19,11 @@ public class VehicleServiceImpl  implements VehicleService {
     }
 
     @Override
-    public List<Vehicle> findAll() throws Exception {
+    public List<Vehicle> findAll() throws VehicleExceptions {
         var vehicles = vehicleRepository.findAll();
 
         if (vehicles.isEmpty()) {
-            throw new Exception(("No vehicles found"));
+            throw new VehicleExceptions(("No vehicles found"));
         }
         return vehicles;
     }

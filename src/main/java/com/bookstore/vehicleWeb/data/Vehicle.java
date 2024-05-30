@@ -15,6 +15,9 @@ public class Vehicle {
     private Double price;
     private Double Kilometers;
 
+    public Vehicle() {
+    }
+
     public Vehicle(String brand, Integer model, Double price, Double kilometers) {
         this.brand = brand;
         this.model = model;
