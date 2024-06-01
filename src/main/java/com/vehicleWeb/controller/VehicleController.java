@@ -1,8 +1,8 @@
-package com.bookstore.vehicleWeb.controllers;
+package com.vehicleWeb.controller;
 
-import com.bookstore.vehicleWeb.data.Vehicle;
-import com.bookstore.vehicleWeb.exceptions.VehicleExceptions;
-import com.bookstore.vehicleWeb.services.VehicleService;
+import com.vehicleWeb.data.Vehicle;
+import com.vehicleWeb.exceptions.VehicleException;
+import com.vehicleWeb.services.VehicleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/vehicles")
+@CrossOrigin(origins = "*")
 public class VehicleController {
 
     private  final VehicleService vehicleService;
@@ -24,7 +25,7 @@ public class VehicleController {
         try {
             List<Vehicle> vehicles = vehicleService.findAll();
             return ResponseEntity.ok(vehicles);
-        } catch (VehicleExceptions e ){
+        } catch (VehicleException e ){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -34,10 +35,20 @@ public class VehicleController {
         try {
             Vehicle savedVehicle = vehicleService.save(vehicle);
             return ResponseEntity.ok(savedVehicle);
-        } catch (VehicleExceptions e) {
+        } catch (VehicleException e) {
             return ResponseEntity.badRequest().body(null);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @GetMapping("/brand/{brand}")
+    public ResponseEntity<List<Vehicle>> findByBrand(@PathVariable String brand) {
+        try {
+            List<Vehicle> vehicles = vehicleService.findByBrand(brand);
+            return ResponseEntity.ok(vehicles);
+        } catch (VehicleException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 

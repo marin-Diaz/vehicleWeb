@@ -1,11 +1,11 @@
-package com.bookstore.vehicleWeb.repository;
+package com.vehicleWeb.repository;
 
-import com.bookstore.vehicleWeb.data.Vehicle;
+import com.vehicleWeb.data.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public interface VehicleRepository extends JpaRepository<Vehicle,Long> {
 
-    List<Vehicle> findByBrand(String brand);
+    List<Vehicle> findByBrand(String brand) ;
 }

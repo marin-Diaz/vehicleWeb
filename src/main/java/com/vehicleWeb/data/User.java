@@ -1,4 +1,4 @@
-package com.bookstore.vehicleWeb.data;
+package com.vehicleWeb.data;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
