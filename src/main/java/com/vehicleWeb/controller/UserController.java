@@ -103,6 +103,17 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+    @GetMapping("/email/{email}/availability")
+    public ResponseEntity<Boolean> checkEmailAvailability(@PathVariable String email) {
+        boolean isAvailable = userService.isEmailAvailable(email);
+        return ResponseEntity.ok(isAvailable);
+    }
+
+    @GetMapping("/phone/{phone}/availability")
+    public ResponseEntity<Boolean> checkPhoneAvailability(@PathVariable String phone) {
+        boolean isAvailable = userService.isPhoneAvailable(phone);
+        return ResponseEntity.ok(isAvailable);
+    }
 }
 
 
