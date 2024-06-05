@@ -6,6 +6,7 @@ import com.vehicleWeb.repository.VehicleRepository;
 import com.vehicleWeb.services.VehicleService;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -61,6 +62,5 @@ public class VehicleServiceImpl  implements VehicleService {
         }
         return vehicleWithModel;
     }
-
 
 }

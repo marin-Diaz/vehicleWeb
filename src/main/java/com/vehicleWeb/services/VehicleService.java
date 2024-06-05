@@ -16,4 +16,6 @@ public interface VehicleService {
 
 
     Vehicle findByModel(Integer model) throws VehicleException;
+
+
 }

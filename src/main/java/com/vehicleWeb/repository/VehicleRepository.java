@@ -11,4 +11,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle,Long> {
 
 
     Vehicle findByModel(Integer model);
+
+
 }
