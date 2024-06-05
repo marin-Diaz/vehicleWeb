@@ -1,6 +1,6 @@
 /* Estilo para el fondo de la página */
 body {
-    background-image: url('../images/fondo4.jpg');
+    background-image: url('../images/fondo3.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -59,32 +59,57 @@ a {
 a:hover {
     text-decoration: underline;
 }
-h1 {
-    text-align: center;
-    margin-top: 50px;
-}
+/* Estilos generales */
 
-table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background-color: rgba(280, 280, 210, 0.5492);
-}
 
-th, td {
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #fff;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-thead {
-    background-color: rgba(255, 255, 255);
+input[type="button"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #45a049;
+}
+
+p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Estilos específicos para los mensajes de disponibilidad */
+#emailAvailabilityMessage,
+#phoneAvailabilityMessage {
+    font-weight: normal;
+    margin-top: 10px;
+}
+input[type="button"]:hover {
+    background-color: #c9302c; /* Color rojo ligeramente más oscuro al pasar el ratón */
+}
+
+#delete_status {
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 a {
     display: block;
-    text-align: center;
     margin-top: 20px;
-    color: #337ab7;
+    text-align: center;
+    color: #337ab7; /* Color azul característico de Bootstrap */
 }
 
 a:hover {

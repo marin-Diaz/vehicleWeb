@@ -76,4 +76,34 @@ class VehicleServiceTest {
             assertEquals(brand, vehicle.getBrand());
         }
     }
+
+    @Test
+    void findByModel() throws VehicleException {
+        Integer model = 2020;
+
+        Vehicle vehicle = new Vehicle();
+        vehicle.setBrand("Toyota");
+        vehicle.setModel(model);
+        vehicle.setPrice(20000.0);
+        vehicle.setKilometers(15000.0);
+
+        doReturn(vehicle).when(vehicleRepository).findByModel(model);
+
+        Vehicle result = vehicleService.findByModel(model);
+        assertNotNull(result, "The vehicle should not be null");
+        assertEquals(model, result.getModel(), "The model of the vehicle should match the queried model");
+    }
+
+    @Test
+    void findByModelNotFound() {
+        Integer model = 9999;  // Asumiendo que este modelo no existe
+
+        doReturn(null).when(vehicleRepository).findByModel(model);
+
+        VehicleException exception = assertThrows(VehicleException.class, () -> {
+            vehicleService.findByModel(model);
+        });
+
+        assertEquals("Vehicle model not found, please check the model and try again.", exception.getMessage());
+    }
 }

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Disponibilidad de Email y Teléfono</title>
+    <link rel="stylesheet" href="./assets/styles/users.css">
+    <link rel="icon" type="icon" href="./assets/images/logo.png">
+</head>
+<body>
+
+<h2>Verificar Disponibilidad</h2>
+
+<!-- Formulario para verificar el correo electrónico -->
+<form id="emailForm">
+    <h3>Verificar Disponibilidad de Email</h3>
+    <label for="email">Correo Electrónico:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+    <input type="button" value="Verificar" class="btn btn-primary" onclick="checkEmail();">
+</form>
+<p id="emailAvailabilityMessage"></p>
+
+<!-- Formulario para verificar el número de teléfono -->
+<form id="phoneForm">
+    <h3>Verificar Disponibilidad de Teléfono</h3>
+    <label for="phone">Número de Teléfono:</label><br>
+    <input type="tel" id="phone" name="phone" required><br><br>
+    <input type="button" value="Verificar" class="btn btn-primary" onclick="checkPhone();">
+</form>
+<p id="phoneAvailabilityMessage"></p>
+
+
+
+
+<script>
+    function checkEmail() {
+        var email = document.getElementById("email").value;
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8080/email/" + encodeURIComponent(email) + "/availability";
+
+        xmlhttp.open("GET", url, true);
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                var message = document.getElementById("emailAvailabilityMessage");
+                if (xmlhttp.status == 200) {
+                    var isAvailable = JSON.parse(xmlhttp.responseText);
+                    if (isAvailable) {
+                        message.textContent = "El correo electrónico está disponible.";
+                        message.style.color = "green";
+                    } else {
+                        message.textContent = "El correo electrónico ya está en uso.";
+                        message.style.color = "red";
+                    }
+                } else {
+                    message.textContent = "Error al verificar la disponibilidad del correo electrónico.";
+                    message.style.color = "red";
+                }
+            }
+        };
+        xmlhttp.send();
+    }
+
+    function checkPhone() {
+        var phone = document.getElementById("phone").value;
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8080/phone/" + encodeURIComponent(phone) + "/availability";
+
+        xmlhttp.open("GET", url, true);
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                var message = document.getElementById("phoneAvailabilityMessage");
+                if (xmlhttp.status == 200) {
+                    var isAvailable = JSON.parse(xmlhttp.responseText);
+                    if (isAvailable) {
+                        message.textContent = "El número de teléfono está disponible.";
+                        message.style.color = "green";
+                    } else {
+                        message.textContent = "El número de teléfono ya está en uso.";
+                        message.style.color = "red";
+                    }
+                } else {
+                    message.textContent = "Error al verificar la disponibilidad del número de teléfono.";
+                    message.style.color = "red";
+                }
+            }
+        };
+        xmlhttp.send();
+    }
+</script>
+
+</body>
+</html>
