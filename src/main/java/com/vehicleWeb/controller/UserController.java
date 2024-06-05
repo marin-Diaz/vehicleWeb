@@ -3,7 +3,7 @@ package com.vehicleWeb.controller;
 import com.vehicleWeb.data.User;
 import com.vehicleWeb.exceptions.UserException;
 import com.vehicleWeb.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @RestController()
 @RequestMapping("/users")
 @CrossOrigin(origins = "*")
-
+@Slf4j
 public class UserController {
 
     private  final UserService userService;
@@ -28,8 +28,10 @@ public class UserController {
     public ResponseEntity<List<User>> getAll() {
         try {
             List<User> users = userService.findAll();
+            log.info("Users list found");
             return ResponseEntity.ok(users);
         } catch (UserException e) {
+            log.error("Request can't be processed due to error {}",e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -41,6 +43,7 @@ public class UserController {
             return savedUser.map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null));
         } catch (UserException e) {
+            log.error("User can´t be saved due to error {}",e);
             return ResponseEntity.badRequest().body(null);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -50,8 +53,10 @@ public class UserController {
     public ResponseEntity<User> findByEmail(@PathVariable String email) {
         try {
             User user = userService.findByEmail(email);
+            log.info("User found with email {}",email);
             return ResponseEntity.ok(user);
         } catch (UserException e) {
+            log.error("User can't be found with email {}", e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -98,18 +103,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-    @GetMapping("/email/{email}/availability")
-    public ResponseEntity<Boolean> checkEmailAvailability(@PathVariable String email) {
-        boolean isAvailable = userService.isEmailAvailable(email);
-        return ResponseEntity.ok(isAvailable);
-    }
-
-    @GetMapping("/phone/{phone}/availability")
-    public ResponseEntity<Boolean> checkPhoneAvailability(@PathVariable String phone) {
-        boolean isAvailable = userService.isPhoneAvailable(phone);
-        return ResponseEntity.ok(isAvailable);
-    }
-
 }
 
 
