@@ -18,5 +18,9 @@ public interface UserService {
 
     User deleteUser(String email) throws UserException;
 
+    User findByPhone(String phone) throws UserException;;
+
+    Long countUsers()throws UserException;;
+
 
 }

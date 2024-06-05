@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController()
 @RequestMapping("/users")
+@CrossOrigin(origins = "*")
 
 public class UserController {
 
@@ -78,5 +79,24 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
-
+    @GetMapping("/phone/{phone}")
+    public ResponseEntity<User> findByPhone(@PathVariable String phone) {
+        try {
+            User user = userService.findByPhone(phone);
+            return ResponseEntity.ok(user);
+        } catch (UserException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+    @GetMapping("/count")
+    public ResponseEntity<Long> countUsers() {
+        try {
+            Long totalUsers = userService.countUsers();
+            return ResponseEntity.ok(totalUsers);
+        } catch (UserException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 }
+
+

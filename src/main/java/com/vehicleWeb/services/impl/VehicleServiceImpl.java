@@ -1,7 +1,5 @@
 package com.vehicleWeb.services.impl;
 
-import com.vehicleWeb.data.User;
-import com.vehicleWeb.exceptions.UserException;
 import com.vehicleWeb.exceptions.VehicleException;
 import com.vehicleWeb.data.Vehicle;
 import com.vehicleWeb.repository.VehicleRepository;
@@ -9,7 +7,6 @@ import com.vehicleWeb.services.VehicleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VehicleServiceImpl  implements VehicleService {
@@ -41,6 +38,8 @@ public class VehicleServiceImpl  implements VehicleService {
 
     }
 
+
+    @Override
     public Vehicle save(Vehicle vehicle) throws VehicleException {
 
         List<Vehicle> vehicles = vehicleRepository.findAll();
@@ -54,5 +53,14 @@ public class VehicleServiceImpl  implements VehicleService {
         }
 
     }
+    @Override
+    public Vehicle findByModel(Integer model) throws VehicleException {
+        Vehicle vehicleWithModel = vehicleRepository.findByModel(model);
+        if (vehicleWithModel == null) {
+            throw new VehicleException("Vehicle model not found, please check the model and try again.");
+        }
+        return vehicleWithModel;
+    }
+
 
 }

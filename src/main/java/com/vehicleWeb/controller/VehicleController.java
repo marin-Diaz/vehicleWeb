@@ -51,5 +51,15 @@ public class VehicleController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+    @GetMapping("/model/{model}")
+    public ResponseEntity<Vehicle> findByModel(@PathVariable Integer model) {
+        try {
+            Vehicle vehicle = vehicleService.findByModel(model);
+            return ResponseEntity.ok(vehicle);
+        } catch (VehicleException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
 
 }

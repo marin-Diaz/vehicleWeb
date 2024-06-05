@@ -15,4 +15,5 @@ public interface VehicleService {
     List<Vehicle> findByBrand(String brand)throws VehicleException;
 
 
+    Vehicle findByModel(Integer model) throws VehicleException;
 }

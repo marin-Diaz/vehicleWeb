@@ -90,6 +90,22 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public User findByPhone(String phone) throws UserException {
+        User userWithPhone = userRepository.findByPhone(phone);
+        if (userWithPhone == null) {
+            throw new UserException("Phone number not found, please check the phone number and try again.");
+        }
+        return userWithPhone;
+    }
+
+    public Long countUsers() throws UserException {
+        try {
+            return userRepository.count();
+        } catch (Exception e) {
+            throw new UserException("Error counting users");
+        }
+    }
 
 
 
