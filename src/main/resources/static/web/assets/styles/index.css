@@ -7,6 +7,33 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
+        .menu__item .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 50%;
+            background-color: white;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            flex-direction: column;
+        }
+
+        .menu__item .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .menu__item .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .menu__item:hover .dropdown-content {
+            display: flex;
+        }
+
+
 body::-webkit-scrollbar {
     display: none;
 }
@@ -444,13 +471,9 @@ main {
     height: 60%;
     width: 100%;
     align-self: baseline;
-
-
-
-
-
-
 }
+
+
 
 .arg .image_container {
     background-image: url(../images/frenteArgentina-removebg-preview.png);

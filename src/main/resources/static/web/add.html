@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Adicionar vehiculo</title>
+        <link rel="stylesheet" href="./assets/styles/styles.css">
+    </head>
+    <meta charset="UTF-8">
+    <title>Adicionar vehículo</title>
+
+<body>
+
+<h2>Adicionar vehículo</h2>
+
+<form>
+    <label for="brand">Marca:</label><br>
+    <input type="text" id="brand" name="brand"><br>
+    <label for="model">Modelo:</label><br>
+    <input type="text" id="model" name="model"><br>
+    <label for="price">Precio:</label><br>
+    <input type="text" id="price" name="price"><br>
+    <label for="kilometers">Kilometraje:</label><br>
+    <input type="text" id="kilometers" name="kilometers"><br><br>
+
+    <input type="button" value="Guardar" class="btn btn-primary" onclick="addVehicle();">
+</form>
+
+<a href="list.html">List</a>
+
+<script>
+    function addVehicle() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "http://localhost:8080/vehicles", true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        var brand = document.getElementById("brand").value;
+        var model = document.getElementById("model").value;
+        var price = document.getElementById("price").value;
+        var kilometers = document.getElementById("kilometers").value;
+
+        var newVehicle = {
+            "brand": brand,
+            "model": model,
+            "price": price,
+            "kilometers": kilometers
+        };
+
+        console.log("Adding vehicle:", newVehicle);
+
+        xmlhttp.send(JSON.stringify(newVehicle));
+    }
+</script>
+
+</body>
+</html>
