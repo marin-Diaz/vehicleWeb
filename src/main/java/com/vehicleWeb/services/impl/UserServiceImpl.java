@@ -4,12 +4,15 @@ import com.vehicleWeb.data.User;
 import com.vehicleWeb.exceptions.UserException;
 import com.vehicleWeb.repository.UserRepository;
 import com.vehicleWeb.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Slf4j
 @Service
@@ -106,6 +109,20 @@ public class UserServiceImpl implements UserService {
             throw new UserException("Error counting users");
         }
     }
+
+    @Override
+    public boolean isEmailAvailable(String email) {
+        return userRepository.findByEmail(email) == null;
+    }
+
+    @Override
+    public boolean isPhoneAvailable(String phone) {
+        return userRepository.findByPhone(phone) == null;
+    }
+
+
+
+
 
 
 

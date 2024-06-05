@@ -3,6 +3,7 @@ package com.vehicleWeb.controller;
 import com.vehicleWeb.data.User;
 import com.vehicleWeb.exceptions.UserException;
 import com.vehicleWeb.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -97,6 +98,18 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+    @GetMapping("/email/{email}/availability")
+    public ResponseEntity<Boolean> checkEmailAvailability(@PathVariable String email) {
+        boolean isAvailable = userService.isEmailAvailable(email);
+        return ResponseEntity.ok(isAvailable);
+    }
+
+    @GetMapping("/phone/{phone}/availability")
+    public ResponseEntity<Boolean> checkPhoneAvailability(@PathVariable String phone) {
+        boolean isAvailable = userService.isPhoneAvailable(phone);
+        return ResponseEntity.ok(isAvailable);
+    }
+
 }
 
 

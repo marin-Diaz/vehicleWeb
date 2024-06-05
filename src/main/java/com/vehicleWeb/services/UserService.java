@@ -22,5 +22,8 @@ public interface UserService {
 
     Long countUsers()throws UserException;;
 
+    boolean isEmailAvailable(String email);
 
+
+    boolean isPhoneAvailable(String phone);
 }
