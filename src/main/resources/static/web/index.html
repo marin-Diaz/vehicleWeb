@@ -18,7 +18,7 @@
 <body>
 
     <main>
- 
+
         <div class="menu-open" id="menu-open">
             <p>Menu</p>
         </div>
@@ -27,30 +27,60 @@
 
             <div class="menu">
                 <div class="menu__item">
-                    <a href="#" class="menu__item-link">Home</a>
-                    
+                    <a href="./index.html" class="bg-transparent menu__item-link">Home</a>
+
                     <img src="./assets/images/25694.png" alt=""
-                        class="menu__item-img">
+                         class="menu__item-img">
                     <div class="marquee">
                         <div class="marquee__inner">
                             <span>Home - Home - Home - Home - Home - Home - Home</span>
                         </div>
                     </div>
                 </div>
-               
-                <div class="menu__item">
-                    <a href="./addU.html" class="menu__item-link">Users</a>
-                    <img src="./assets/images/60992.png" alt="" class="menu__item-img">
-                    <div class="dropdown-content">
-                        <a href="page1.html">Page 1</a>
-                        <a href="page2.html">Page 2</a>
-                        <a href="page3.html">Page 3</a>
-                        <a href="page4.html">Page 4</a>
-                        <a href="page5.html">Page 5</a>
-                        <a href="page6.html">Page 6</a>
-                        <a href="page7.html">Page 7</a>
-                    </div>
 
+                <div class="menu__item">
+                    <img src="./assets/images/60992.png" alt="" class="menu__item-img">
+                    <div class="dropdown">
+                        <div class="btn-group dropend align-items-center">
+                            <button type="button" class="btn btn-light dropdown-toggle dropend" data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style=".bg-light --bs-btn-padding-y: 2 rem; --bs-btn-padding-x: 15rem; --bs-btn-font-size: 5rem; ">
+                                Users
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button class="bg-transparent dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./addU.html" class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">Add User</a></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./countU.html" class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">Count User</a></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./deleteU.html" class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">Delete User</a></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./FindByEmail.html" class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">Find by email</a></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./listU.html" class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">List Users</a></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./updateU.html" class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">Update User</a></p>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="marquee">
                         <div class="marquee__inner">
                             <span>Users - Users - Users - Users - Users - Users -
@@ -60,29 +90,50 @@
                 </div>
 
                 <div class="menu__item">
-                    <a href="./login.html" class="menu__item-link">Vehicles</a>
                     <img src="./assets/images/152533.png" alt="" class="menu__item-img">
+                    <div class="dropdown">
+                        <div class="btn-group dropend">
+                            <button type="button" class="btn bg-transparent dropdown-toggle dropend" data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style=".bg-light --bs-btn-padding-y: 2 rem; --bs-btn-padding-x: 11.4rem; --bs-btn-font-size: 5rem; ">
+                                Vehicles
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button class="bg-transparent dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./add.html"
+                                              class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">Add
+                                            Vehicle</a></p>
+                                    </button>
+                                    <button class="dropdown-item" type="button"></button>
+                                </li>
+                                <li>
+                                    <button class="bg-transparent dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./FindByBrand.html"
+                                              class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">Find
+                                            by brand</a></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-center .fs-3 text" type="button">
+                                        <p><a href="./list.html"
+                                              class="bg-transparent link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover .fs-1 text-decoration-none text fw-bold">List
+                                            Vehicles</a></p>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="marquee">
                         <div class="marquee__inner">
                             <span>Vehicles - Vehicles - Vehicles - Vehicles - Vehicles - Vehicles - Vehicles</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="menu__item">
-                    <a href="./soporte.html" class="menu__item-link">Contact</a>
-                    <img src="./assets/images/761755.png" alt=""
-                        class="menu__item-img">
-                    <div class="marquee">
-                        <div class="marquee__inner">
-                            <span>Contact - Contact - Contact - Contact - Contact - Contact - Contact</span>
-                        </div>
-                    </div>
-                </div>
                 <div class="menu__item">
                     <a @click="cerrarSesion()" href="#" class="menu__item-link"></a>
                     <img src="./assets/images/image_processing20210620-28144-6enonr.png" alt=""
-                        class="menu__item-img">
+                         class="menu__item-img">
                     <div class="marquee">
                     </div>
                 </div>

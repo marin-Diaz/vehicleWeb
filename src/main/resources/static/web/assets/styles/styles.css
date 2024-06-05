@@ -5,7 +5,13 @@ body {
     margin: 0;
     padding: 0;
 }
-
+.bodyAddU,.main_cards{
+    background-image: url(../images/bg1.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+}
 /* Estilos para el encabezado */
 h1 {
     color: #333;
