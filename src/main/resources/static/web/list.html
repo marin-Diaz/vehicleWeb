@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles List</title>
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+</head>
+<body>
+
+<h1>Vehicles List</h1>
+
+<table id="vehicles_table">
+    <thead>
+    <tr>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>Kilometers</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<a href="add.html">Add New Vehicle</a>
+
+<script>
+    findAll_vehicles();
+
+    function findAll_vehicles(){
+        console.log("Listing all vehicles:");
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.open('GET', 'http://localhost:8080/vehicles', true);
+
+        xhttp.onreadystatechange = function() {
+
+            if (xhttp.readyState === XMLHttpRequest.DONE) {
+                var status = xhttp.status;
+                if (status === 0 || (status >= 200 && status < 400)) { // NO hay errores
+                    var json = JSON.parse(xhttp.responseText);
+                    createTable(json, "vehicles_table");
+                } else {
+                    console.log("Error");
+                }
+            }
+        };
+        xhttp.send();
+    }
+
+    function createTable(json, tableId) {
+        var tableBody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+
+        // Clear table body
+        tableBody.innerHTML = '';
+
+        // Populate table
+        json.forEach((vehicle) => {
+            var tr = document.createElement("tr");
+
+            // Add data cells
+            var keys = ['brand', 'model', 'price', 'kilometers'];
+            keys.forEach((key) => {
+                var td = document.createElement("td");
+                td.textContent = vehicle[key];
+                tr.appendChild(td);
+            });
+
+            tableBody.appendChild(tr);
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update User by Email</title>
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+</head>
+<body>
+
+<h2>Update User by Email</h2>
+
+<form>
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address"><br>
+    <label for="phone">Phone:</label><br>
+    <input type="text" id="phone" name="phone"><br><br>
+
+    <input type="button" value="Update User" class="btn btn-primary" onclick="updateUser();">
+</form>
+
+<div id="update_status"></div>
+
+<a href="listU.html">Back to List</a>
+
+<script>
+    function updateUser() {
+        var email = document.getElementById("email").value;
+        var name = document.getElementById("name").value;
+        var address = document.getElementById("address").value;
+        var phone = document.getElementById("phone").value;
+
+        var updatedUser = {
+            "name": name,
+            "address": address,
+            "phone": phone
+        };
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "http://localhost:8080/users/update/" + email, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+                var status = xmlhttp.status;
+                if (status === 200) {
+                    document.getElementById("update_status").textContent = "User updated successfully.";
+                } else if (status === 404) {
+                    document.getElementById("update_status").textContent = "User not found.";
+                } else {
+                    document.getElementById("update_status").textContent = "Error updating user.";
+                }
+            }
+        };
+
+        xmlhttp.send(JSON.stringify(updatedUser));
+    }
+</script>
+
+</body>
+</html>

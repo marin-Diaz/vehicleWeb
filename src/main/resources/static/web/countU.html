@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Users</title>
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+</head>
+<body>
+
+<h2>Count Users</h2>
+
+<button onclick="countUsers()" class="btn btn-primary">Count Users</button>
+
+<div id="user_count"></div>
+
+<a href="listU.html">Back to List</a>
+
+<script>
+    function countUsers() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "http://localhost:8080/users/count", true);
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+                var status = xmlhttp.status;
+                if (status === 200) {
+                    var totalUsers = JSON.parse(xmlhttp.responseText);
+                    displayUserCount(totalUsers);
+                } else if (status === 400) {
+                    document.getElementById("user_count").textContent = "Error: Bad Request";
+                } else {
+                    document.getElementById("user_count").textContent = "Error: Something went wrong";
+                }
+            }
+        };
+
+        xmlhttp.send();
+    }
+
+    function displayUserCount(count) {
+        document.getElementById("user_count").textContent = "Total Users: " + count;
+    }
+</script>
+
+</body>
+</html>

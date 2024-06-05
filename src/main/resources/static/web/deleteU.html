@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User by Email</title>
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+</head>
+<body>
+
+<h2>Delete User by Email</h2>
+
+<form>
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br><br>
+
+    <input type="button" value="Delete User" class="btn btn-danger" onclick="deleteUser();">
+</form>
+
+<div id="delete_status"></div>
+
+<a href="listU.html">Back to List</a>
+
+<script>
+    function deleteUser() {
+        var email = document.getElementById("email").value;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("DELETE", "http://localhost:8080/users/delete/" + email, true);
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+                var status = xmlhttp.status;
+                if (status === 200) {
+                    document.getElementById("delete_status").textContent = "User deleted successfully.";
+                } else if (status === 404) {
+                    document.getElementById("delete_status").textContent = "User not found.";
+                } else {
+                    document.getElementById("delete_status").textContent = "Error deleting user.";
+                }
+            }
+        };
+
+        xmlhttp.send();
+    }
+</script>
+
+</body>
+</html>

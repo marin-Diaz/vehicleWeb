@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+</head>
+<body>
+
+<h1>Users List</h1>
+
+<table id="users_table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Phone</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<a href="addU.html">Add New User</a>
+
+<script>
+    findAll_users();
+
+    function findAll_users(){
+        console.log("Listing all users:");
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.open('GET', 'http://localhost:8080/users', true);
+
+        xhttp.onreadystatechange = function() {
+
+            if (xhttp.readyState === XMLHttpRequest.DONE) {
+                var status = xhttp.status;
+                if (status === 0 || (status >= 200 && status < 400)) { // NO hay errores
+                    var json = JSON.parse(xhttp.responseText);
+                    createTable(json, "users_table");
+                } else {
+                    console.log("Error");
+                }
+            }
+        };
+        xhttp.send();
+    }
+
+    function createTable(json, tableId) {
+        var tableBody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+
+        // Clear table body
+        tableBody.innerHTML = '';
+
+        // Populate table
+        json.forEach((vehicle) => {
+            var tr = document.createElement("tr");
+
+            // Add data cells
+            var keys = ['name', 'email', 'address', 'phone'];
+            keys.forEach((key) => {
+                var td = document.createElement("td");
+                td.textContent = vehicle[key];
+                tr.appendChild(td);
+            });
+
+            tableBody.appendChild(tr);
+        });
+    }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Vehicle by Brand</title>
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+</head>
+<body>
+
+<h2>Search Vehicle by Brand</h2>
+
+<form>
+    <label for="brand">Brand:</label><br>
+    <input type="text" id="brand" name="brand"><br><br>
+
+    <input type="button" value="Search Vehicle" class="btn btn-primary" onclick="findVehicleByBrand();">
+</form>
+
+<div id="vehicle_details"></div>
+
+<a href="listV.html">Back to List</a>
+
+<script>
+    function findVehicleByBrand() {
+        var brand = document.getElementById("brand").value;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "http://localhost:8080/vehicles/brand/" + brand, true);
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+                var status = xmlhttp.status;
+                if (status === 200) {
+                    var vehicles = JSON.parse(xmlhttp.responseText);
+                    displayVehicles(vehicles);
+                } else if (status === 400) {
+                    document.getElementById("vehicle_details").textContent = "Error: Bad Request";
+                } else {
+                    document.getElementById("vehicle_details").textContent = "Error: Something went wrong";
+                }
+            }
+        };
+
+        xmlhttp.send();
+    }
+
+    function displayVehicles(vehicles) {
+        var vehicleDetailsDiv = document.getElementById("vehicle_details");
+        vehicleDetailsDiv.innerHTML = '';
+
+        if (vehicles.length === 0) {
+            vehicleDetailsDiv.textContent = "No vehicles found for this brand.";
+        } else {
+            var vehicleListHTML = "<h3>Vehicles Found</h3><ul>";
+
+            vehicles.forEach(function(vehicle) {
+                vehicleListHTML += "<li><strong>Brand:</strong> " + vehicle.brand + "</li>" +
+                    "<li><strong>Model:</strong> " + vehicle.model + "</li>" +
+                    "<li><strong>Price:</strong> " + vehicle.price + "</li>" +
+                    "<li><strong>Kilometers:</strong> " + vehicle.kilometers + "</li><br>";
+            });
+
+            vehicleListHTML += "</ul>";
+            vehicleDetailsDiv.innerHTML = vehicleListHTML;
+        }
+    }
+</script>
+
+</body>
+</html>
